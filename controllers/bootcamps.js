@@ -28,6 +28,17 @@ exports.getBootcamp = asyncHandler(async (req, res, next) => {
 //Route POST /api/v1/bootcamps
 //access PRIVATE
 exports.createBootcamp = asyncHandler(async (req, res, next) => {
+  //add user to req, body
+  req.body.user = req.user.id;
+
+  //check for published bootcamp
+  const publishedBootcamp = await Bootcamp.findOne({ user: req.user.id })
+
+  //if user is not an admin, they are only allowed to add one bootcamp
+  if (publishedBootcamp && req.user.role !== 'admin') {
+    return next(new ErrorResponse(`The user with ID ${req.user.id} has already published a bootcamp`, 400))
+  }
+
   const bootcamp = await Bootcamp.create(req.body)
 
   res.status(201).json({
@@ -40,15 +51,26 @@ exports.createBootcamp = asyncHandler(async (req, res, next) => {
 //Route PUT /api/v1/bootcamps/:id
 //access PRIVATE
 exports.updateBootcamp = asyncHandler(async (req, res, next) => {
-  const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  })
+  let bootcamp = await Bootcamp.findById(req.params.id)
+
   if (!bootcamp) {
     return next(
       new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404)
     )
   }
+
+  //verification if the user is the owner
+  if (bootcamp.user.toString() !== req.user.id && req.user.role !== 'admin') {
+    return next(
+      new ErrorResponse(`User ${req.params.id} is unauthorized to update this Bootcamp`, 401)
+    )
+  }
+
+  bootcamp = await Bootcamp.findOneAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true
+  })
+
   res.status(200).json({ success: true, data: bootcamp })
 })
 
@@ -56,17 +78,27 @@ exports.updateBootcamp = asyncHandler(async (req, res, next) => {
 //Route DELETE /api/v1/bootcamps/:id
 //access PRIVATE
 exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
-   const bootcamp = await Bootcamp.findById(req.params.id)
+  const bootcamp = await Bootcamp.findById(req.params.id);
 
-   if (!bootcamp) {
-     return next(
-       new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404)
-     )
-   }
+  if (!bootcamp) {
+    return next(
+      new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404)
+    );
+  }
 
-   bootcamp.remove()
+  //verification if the user is the owner
+  if (bootcamp.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `User ${req.params.id} is unauthorized to remove this Bootcamp`,
+        401
+      )
+    );
+  }
 
-   res.status(200).json({ success: true, data: {} })
+  bootcamp.remove();
+
+  res.status(200).json({ success: true, data: {} });
 })
 
 
@@ -74,44 +106,59 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
 //Route PUT /api/v1/bootcamps/:id/photo
 //access PRIVATE
 exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
-   const bootcamp = await Bootcamp.findById(req.params.id)
+  const bootcamp = await Bootcamp.findById(req.params.id);
 
-   if (!bootcamp) {
-     return next(
-       new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404)
-     )
-   }
-
-   if (!req.files) {
-      return next(new ErrorResponse(`Please upload a photo`, 400))
-   }
-
-   const file = req.files.file
-
-   if (!file.mimetype.startsWith('image')) {
-    return next(new ErrorResponse(`Please upload an image file`, 400))
-   }
-
-//check file size
-   if (file.size > process.env.MAX_FILE_UPLOAD) {
-    return next(new ErrorResponse(`the Photo you are trying to upload exceeds the maximum size limit`, 400))
-   }
-
-//Create custom filename
-file.name = `photo_${bootcamp._id}${path.parse(file.name).ext}`
-
-file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async err => {
-  if (err) {
-    console.error(err)
-    return next( new ErrorResponse(`Problem occurred during the upload`, 500))
+  if (!bootcamp) {
+    return next(
+      new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404)
+    );
   }
-  await Bootcamp.findByIdAndUpdate(req.params.id, { photo: file.name })
 
-  res.status(200).json({
-    success: true,
-    data: file.name
-  })
-  })
+  //verification if the user is the owner
+  if (bootcamp.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `User ${req.params.id} is unauthorized to update this Bootcamp`,
+        401
+      )
+    );
+  }
+
+  if (!req.files) {
+    return next(new ErrorResponse(`Please upload a photo`, 400));
+  }
+
+  const file = req.files.file;
+
+  if (!file.mimetype.startsWith("image")) {
+    return next(new ErrorResponse(`Please upload an image file`, 400));
+  }
+
+  //check file size
+  if (file.size > process.env.MAX_FILE_UPLOAD) {
+    return next(
+      new ErrorResponse(
+        `the Photo you are trying to upload exceeds the maximum size limit`,
+        400
+      )
+    );
+  }
+
+  //Create custom filename
+  file.name = `photo_${bootcamp._id}${path.parse(file.name).ext}`;
+
+  file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async (err) => {
+    if (err) {
+      console.error(err);
+      return next(new ErrorResponse(`Problem occurred during the upload`, 500));
+    }
+    await Bootcamp.findByIdAndUpdate(req.params.id, { photo: file.name });
+
+    res.status(200).json({
+      success: true,
+      data: file.name,
+    });
+  });
 })
 
 //Get bootcamps within a radius

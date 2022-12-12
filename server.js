@@ -3,6 +3,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 const colors = require('colors')
+const cookieParser = require('cookie-parser')
 const fileupload = require('express-fileupload')
 const errHandler = require('./middleware/error')
 const connectDB = require('./config/db')
@@ -17,17 +18,19 @@ connectDB()
 //route files
 const bootcamps = require('./routes/bootcamps')
 const courses = require('./routes/courses')
+const auth = require('./routes/auth')
 
 const app = express()
 
 //body parser
 app.use(express.json())
 
+app.use(cookieParser())
+
 // dev loggin middleware
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
-
 
 //file uploading
 app.use(fileupload())
@@ -37,7 +40,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //mount routers
 app.use('/api/v1/bootcamps', bootcamps)
-app.use('/api/v1/courses', courses)
+app.use('/api/v1/courses', courses),
+app.use('/api/v1/auth', auth)
 
 app.use(errHandler)
 
@@ -53,5 +57,5 @@ process.on('unchandledRejection', (err, promise) => {
   console.log(`Error: ${err.message}`)
 
   //close server & exit process
-  server.close(() => process.exit(1))
+  // server.close(() => process.exit(1))
 })

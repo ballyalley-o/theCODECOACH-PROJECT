@@ -29,43 +29,43 @@
 	},
 	{
 		"_id": "5d7a514b5d2c12c7449be046",
-		"name": "Kevin Smith",
+		"name": "Kevin McCallister",
 		"email": "kevin@gmail.com",
 		"role": "publisher",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc031",
-		"name": "Mary Williams",
-		"email": "mary@gmail.com",
+		"name": "Mary Rose Perez",
+		"email": "mrperez@gmail.com",
 		"role": "publisher",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc032",
-		"name": "Sasha Ryan",
-		"email": "sasha@gmail.com",
+		"name": "Walter White",
+		"email": "iamthedanger@gmail.com",
 		"role": "publisher",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc033",
-		"name": "Greg Harris",
-		"email": "greg@gmail.com",
+		"name": "Jesse Pinkman",
+		"email": "sciencebtch@gmail.com",
 		"role": "user",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc034",
-		"name": "Derek Glover",
-		"email": "derek@gmail.com",
+		"name": "JJ Yespapa",
+		"email": "jjyespapa@gmail.com",
 		"role": "user",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc035",
-		"name": "Stephanie Hanson",
-		"email": "steph@gmail.com",
+		"name": "Jimmy McGill",
+		"email": "saulgoodman@gmail.com",
 		"role": "user",
 		"password": "123456"
 	},
@@ -85,21 +85,21 @@
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc038",
-		"name": "Barry Dickens",
-		"email": "barry@gmail.com",
+		"name": "Harry puto",
+		"email": "harryputo@gmail.com",
 		"role": "user",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc039",
-		"name": "Ryan Bolin",
-		"email": "ryan@gmail.com",
+		"name": "Ken Adams",
+		"email": "kenny.A@gmail.com",
 		"role": "user",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc040",
-		"name": "Sara Kensing",
+		"name": "Crap bag",
 		"email": "sara@gmail.com",
 		"role": "user",
 		"password": "123456"
