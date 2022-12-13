@@ -3,7 +3,7 @@
 
 
 
->BACKEND support for "the CODECOACH Project" application to handle the whole CRUD operations:
+>BACKEND support for "the CODECOACH Project" Application to handle the whole CRUD operations:
 - bootcamps
 - courses
 - users
