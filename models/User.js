@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: [true, 'Please provide your email'],
+    required: [true, "Please provide your email"],
     unique: true,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
@@ -19,12 +19,12 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["user", "publisher"],
-    default: 'user'
+    enum: ["student", "trainer"],
+    default: "student",
   },
   password: {
     type: String,
-    required: [true, 'Please enter your password'],
+    required: [true, "Please enter your password"],
     minlength: 6,
     select: false,
   },
@@ -32,9 +32,9 @@ const UserSchema = new mongoose.Schema({
   resetPasswordExpire: Date,
   createdAt: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
 //Encryption (password)
 UserSchema.pre('save', async function(next) {

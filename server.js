@@ -5,7 +5,13 @@ const morgan = require('morgan')
 const colors = require('colors')
 const cookieParser = require('cookie-parser')
 const fileupload = require('express-fileupload')
+const mongoSanitizer = require('express-mongo-sanitize')
 const errHandler = require('./middleware/error')
+const helmet = require('helmet')
+const xss = require('xss-clean')
+const expRateLimit = require('express-rate-limit')
+const hpp = require("hpp");
+const cors = require('cors')
 const connectDB = require('./config/db')
 
 
@@ -19,6 +25,9 @@ connectDB()
 const bootcamps = require('./routes/bootcamps')
 const courses = require('./routes/courses')
 const auth = require('./routes/auth')
+const users = require("./routes/users");
+const feedbacks = require("./routes/feedbacks");
+
 
 const app = express()
 
@@ -35,6 +44,26 @@ if (process.env.NODE_ENV === 'development') {
 //file uploading
 app.use(fileupload())
 
+//sanitize all data
+app.use(mongoSanitizer());
+//security headers
+app.use(helmet())
+//avoid xss attacks
+app.use(xss())
+//avoid http param pollution
+app.use(hpp())
+
+//cors implementation
+app.use(cors())
+
+//rate limit
+const rateLimiter = expRateLimit({
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 50
+})
+app.use(rateLimiter)
+
+
 //set static folder path
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -42,6 +71,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/v1/bootcamps', bootcamps)
 app.use('/api/v1/courses', courses),
 app.use('/api/v1/auth', auth)
+app.use('/api/v1/users', users);
+app.use("/api/v1/feedbacks", feedbacks);
+
 
 app.use(errHandler)
 

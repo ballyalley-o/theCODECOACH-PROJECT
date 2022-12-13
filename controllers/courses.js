@@ -2,6 +2,7 @@ const ErrorResponse = require("../utilities/errorResponse")
 const asyncHandler = require("../middleware/async")
 const Course = require("../models/Course")
 const Bootcamp = require("../models/Bootcamp")
+
 //Get ALL courses
 //Route GET /api/v1/courses
 //Route GET /api/v1/bootcamps/:bootcampId/courses

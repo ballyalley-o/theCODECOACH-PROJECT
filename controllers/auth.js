@@ -52,6 +52,22 @@ exports.login = asyncHandler(async (req, res, next) => {
   sendTokenResponse(user, 200, res);
 })
 
+//Get Log out User
+//GET /api/v1/auth/logout
+//Private
+exports.logoutMe = asyncHandler(async (req, res, next) => {
+  res.cookie('token', 'none', {
+    expires: new Date(Date.now() + 5 * 1000),
+    httpOnly: true
+  })
+
+  res.status(200).json({
+    success: true,
+    message: `User logged out successfully`,
+    data: {}
+  })
+})
+
 
 //Get current logged in user
 //GET /api/v1/auth/me
@@ -59,12 +75,53 @@ exports.login = asyncHandler(async (req, res, next) => {
 exports.getMe = asyncHandler(async (req, res, next) => {
   const { name, email, password, role } = req.body;
 
+  res.status(200).json({
+    success: true,
+    message: 'Request successful',
+    data: req.user
+  })
+})
 
+
+
+//Update user details
+//PUT /api/v1/auth/update_details
+//Private
+exports.updateDetails = asyncHandler(async (req, res, next) => {
+  const fieldsToUpdate = {
+    name: req.body.name,
+    email: req.body.email,
+  }
+
+  const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+    new: true,
+    runValidators: true,
+  });
 
   res.status(200).json({
     success: true,
-    data: req.user
+    message: 'Updated details',
+    data: user
   })
+})
+
+
+//Update Password
+//PUT /api/v1/auth/update_password
+//Private
+exports.updatePassword = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select('+password');
+
+
+  //check current password
+   if (!(await user.matchPassword(req.body.currentPassword))) {
+    return next(new ErrorResponse("Password is invalid", 401));
+   }
+
+   user.password = req.body.newPassword;
+   await user.save();
+
+   sendTokenResponse(user, 200, res)
 })
 
 
@@ -114,6 +171,7 @@ const message = `A request has been made to reset your password. If you made thi
 
   res.status(200).json({
     success: true,
+    message: 'Email sent',
     data: user
   })
 })
