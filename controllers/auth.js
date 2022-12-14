@@ -143,7 +143,7 @@ await user.save({ validateBeforeSave: false })
 //Create reset URL
 const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/auth/reset_password/${resetToken}`;
 
-const message = `A request has been made to reset your password. If you made this request, please copy the following code into the prompt in ${resetUrl} to verify your identity.`;
+const message = `A request has been made to reset your password. If you made this request, please copy the following code into the prompt in: \n\n ${resetUrl} to verify your identity.`;
  try {
   await sendEmail({
     email: user.email,
@@ -167,7 +167,6 @@ const message = `A request has been made to reset your password. If you made thi
 
   return next(new ErrorResponse('Email could not be sent', 500))
  }
-
 
   res.status(200).json({
     success: true,
@@ -198,7 +197,6 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
   user.password = req.body.password;
   resetPasswordToken = undefined;
   resetPasswordExpire = undefined;
-
   await user.save();
 
  sendTokenResponse(user, 200, res);
