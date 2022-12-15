@@ -4,9 +4,17 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const UserSchema = new mongoose.Schema({
-  name: {
+  firstName: {
     type: String,
-    required: [true, "Please provide your name"],
+    required: [true, "Please provide your first name"],
+    min: 3,
+    max: 60,
+  },
+  lastName: {
+    type: String,
+    required: [true, "Please provide your family/last name"],
+    min: 3,
+    max: 60,
   },
   email: {
     type: String,
@@ -28,6 +36,17 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
+  picturePath: {
+    type: String,
+    default: "no-photo.jpg",
+  },
+  friends: {
+    type: Array,
+    default: [],
+  },
+  location: String,
+  viewedProfile: Number,
+  impressions: Number,
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   createdAt: {

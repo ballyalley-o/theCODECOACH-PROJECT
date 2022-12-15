@@ -172,8 +172,6 @@ exports.getBootcampsInRadius = asyncHandler(async (req, res, next) => {
   const lat = loc[0].latitude
   const lng = loc[0].longitude
 
-
-
   //compute radius using radians
   //divide distance by radius of earth
   //earth radius = 3,963 mi / 6,378 km

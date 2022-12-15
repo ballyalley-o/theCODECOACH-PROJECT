@@ -1,107 +1,136 @@
 [
 	{
 		"_id": "5d7a514b5d2c12c7449be042",
-		"name": "Admin Account",
+		"firstName": "Admin",
+		"lastName": "Account",
 		"email": "admin@gmail.com",
 		"role": "admin",
 		"password": "123456"
 	},
 	{
 		"_id": "5d7a514b5d2c12c7449be043",
-		"name": "Trainer Account",
+		"firstName": "Trainer Account",
+		"lastName": "Trainer Account",
 		"email": "trainer@gmail.com",
 		"role": "trainer",
 		"password": "123456"
 	},
 	{
 		"_id": "5d7a514b5d2c12c7449be044",
-		"name": "Student Account",
+		"firsName": "Student",
+		"lastName": "Account",
 		"email": "student@gmail.com",
 		"role": "student",
 		"password": "123456"
 	},
 	{
 		"_id": "5d7a514b5d2c12c7449be045",
-		"name": "John Doe",
+		"firstName": "John",
+		"lastName": "Doe",
 		"email": "john@gmail.com",
 		"role": "trainer",
 		"password": "123456"
 	},
 	{
 		"_id": "5d7a514b5d2c12c7449be046",
-		"name": "Kevin McCallister",
+		"firstName": "Kevin McCallister",
+		"lastName": "McCallister",
 		"email": "kevin@gmail.com",
 		"role": "trainer",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc031",
-		"name": "Mary Rose Perez",
+		"firstName": "Mary Rose",
+		"lastName": "Perez",
 		"email": "mrperez@gmail.com",
 		"role": "trainer",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc032",
-		"name": "Walter White",
+		"firstName": "Walter",
+		"lastName": "White",
 		"email": "iamthedanger@gmail.com",
 		"role": "trainer",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc033",
-		"name": "Jesse Pinkman",
+		"firstName": "Jesse",
+		"lastName": "Pinkman",
 		"email": "sciencebtch@gmail.com",
 		"role": "trainer",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc034",
-		"name": "JJ Yespapa",
+		"firstName": "JJ",
+		"lastName": "Yespapa",
 		"email": "jjyespapa@gmail.com",
 		"role": "student",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc035",
-		"name": "Jimmy McGill",
+		"firstName": "Jimmy",
+		"lastName": "McGill",
 		"email": "saulgoodman@gmail.com",
 		"role": "student",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc036",
-		"name": "Jerry Wiliams",
+		"firstName": "Jerry",
+		"lastName": "Wiliams",
 		"email": "jerry@gmail.com",
 		"role": "student",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc037",
-		"name": "Maggie Johnson",
+		"firstName": "Maggie",
+		"lastName": "Johnson",
 		"email": "maggie@gmail.com",
 		"role": "student",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc038",
-		"name": "Harry puto",
+		"firstName": "Harry",
+		"lastName": "Puto",
 		"email": "harryputo@gmail.com",
 		"role": "student",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc039",
-		"name": "Ken Adams",
+		"firstName": "Ken",
+		"lastName": "Adams",
 		"email": "kenny.A@gmail.com",
 		"role": "student",
 		"password": "123456"
 	},
 	{
 		"_id": "5c8a1d5b0190b214360dc040",
-		"name": "Crap bag",
+		"firsName": "Crap",
+		"lastName": "Bag",
 		"email": "sara@gmail.com",
 		"role": "student",
-		"password": "123456"
-	}
+		"password": "123456",
+		"location": "Philippines",
+		"viewedprofile": 123,
+		"impressions": 456
+	},
+		{
+      "_id": "5c8a1d5b0190b214360dc040",
+      "firsName": "Princess Consuela",
+      "lastName": "Banana-Hammock",
+      "email": "sara@gmail.com",
+      "role": "student",
+      "password": "123456",
+      "location": "Philippines",
+      "viewedprofile": 123,
+      "impressions": 456
+    }
 ]
