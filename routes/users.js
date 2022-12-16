@@ -3,6 +3,8 @@ const express = require("express");
 const {
     getUsers,
     getUser,
+    getUserFriends,
+    addRemoveFriend,
     createUser,
     updateUser,
     deleteUser,

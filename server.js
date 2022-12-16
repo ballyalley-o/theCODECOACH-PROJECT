@@ -16,6 +16,8 @@ const connectDB = require('./config/db')
 const multer = require('multer')
 const bodyParser = require('body-parser')
 const { fileURLToPath } = require('url')
+const feeds = require('./controllers/feeds')
+
 const { register } = require('./controllers/auth')
 
 //load env vars
@@ -30,6 +32,7 @@ const courses = require('./routes/courses')
 const auth = require('./routes/auth')
 const users = require("./routes/users");
 const feedbacks = require("./routes/feedbacks");
+const posts = require("./routes/posts");
 const { register } = require('./controllers/auth')
 
 
@@ -92,6 +95,7 @@ const upload = multer({ storage })
 
 //routes with file upload
 app.post('/auth/register', upload.single('picture'), register)
+app.post("/posts", protect, upload.single('picture'), createPost)
 
 //mount routers
 app.use('/api/v1/bootcamps', bootcamps)
@@ -99,6 +103,7 @@ app.use('/api/v1/courses', courses),
 app.use('/api/v1/auth', auth)
 app.use('/api/v1/users', users);
 app.use("/api/v1/feedbacks", feedbacks);
+app.use("/api/v1/posts", posts);
 
 
 
