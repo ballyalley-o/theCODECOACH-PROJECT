@@ -7,7 +7,7 @@
 		"role": "admin",
 		"password": "123456",
 		"location": "School District",
-		"picturePath": "",
+		"picturePath": "admin.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 456
@@ -20,7 +20,7 @@
 		"role": "trainer",
 		"password": "123456",
 		"location": "School District",
-		"picturePath": "",
+		"picturePath": "trainer.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 453
@@ -33,7 +33,7 @@
 		"role": "student",
 		"password": "123456",
 		"location": "School District",
-		"picturePath": "",
+		"picturePath": "student.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 456
@@ -46,7 +46,7 @@
 		"role": "trainer",
 		"password": "123456",
 		"location": "Paris, France",
-		"picturePath": "",
+		"picturePath": "john.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 456
@@ -59,7 +59,7 @@
 		"role": "trainer",
 		"password": "123456",
 		"location": "Chicago, Illinois, USA",
-		"picturePath": "",
+		"picturePath": "kevin.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 456
@@ -72,7 +72,7 @@
 		"role": "trainer",
 		"password": "123456",
 		"location": "Sampaloc, Manila, Philippines",
-		"picturePath": "",
+		"picturePath": "mr.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 456
@@ -85,7 +85,7 @@
 		"role": "trainer",
 		"password": "123456",
 		"location": "Albuquerque, New Mexico, USA",
-		"picturePath": "",
+		"picturePath": "ww.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 456
@@ -163,7 +163,7 @@
 		"role": "student",
 		"password": "123456",
 		"location": "United Kingdom",
-		"picturePath": "",
+		"picturePath": "harry.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 456
@@ -176,7 +176,7 @@
 		"role": "student",
 		"password": "123456",
 		"location": "Brooklyn, NY, USA",
-		"picturePath": "",
+		"picturePath": "kevin.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 456
@@ -189,7 +189,7 @@
 		"role": "student",
 		"password": "123456",
 		"location": "New York, NY, USA",
-		"picturePath": "",
+		"picturePath": "crap.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 456
@@ -202,7 +202,7 @@
 		"role": "student",
 		"password": "123456",
 		"location": "Manhattan, New York, NY, USA",
-		"picturePath": "",
+		"picturePath": "princess.png",
 		"friends": [],
 		"viewedprofile": 123,
 		"impressions": 456

@@ -50,7 +50,7 @@ exports.getUserFriends = asyncHandler(async (req, res, next) => {
         message: err.message
     })
     }
-},
+}),
 
 //PUT add/remove user friends
 //PUT /api/v1/auth/users/:userId/friends
@@ -89,7 +89,7 @@ exports.addRemoveFriend = asyncHandler(async (req, res, next) => {
         message: err.message
     })
     }
-},
+}),
 
 
 //Create a new user
@@ -103,7 +103,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
         message: 'User successfully created',
         data: user
     })
-});
+}),
 
 //Update a user
 //PUT/api/v1/auth/users/:id
@@ -119,7 +119,7 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
         message: 'User successfully updated from the database',
         data: user
     })
-});
+}),
 
 //Delete a user
 //PUT/api/v1/auth/users/:id
@@ -132,7 +132,7 @@ exports.deleteUser = asyncHandler(async (req, res, next) => {
         message: 'User successfully removed from the database',
         data: {}
     })
-});
+})
 
 
 

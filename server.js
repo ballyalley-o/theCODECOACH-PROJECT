@@ -16,9 +16,10 @@ const connectDB = require('./config/db')
 const multer = require('multer')
 const bodyParser = require('body-parser')
 const { fileURLToPath } = require('url')
-const feeds = require('./controllers/feeds')
+const { protect } = require("./middleware/auth");
+const { register } = require("./controllers/auth");
+const { createPost } = require("./controllers/posts");
 
-const { register } = require('./controllers/auth')
 
 //load env vars
 dotenv.config({path: './config/config.env'})
@@ -33,7 +34,6 @@ const auth = require('./routes/auth')
 const users = require("./routes/users");
 const feedbacks = require("./routes/feedbacks");
 const posts = require("./routes/posts");
-const { register } = require('./controllers/auth')
 
 
 const app = express()
@@ -43,7 +43,6 @@ const app = express()
 app.use(express.json())
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-
 
 
 app.use(cookieParser())
@@ -95,7 +94,7 @@ const upload = multer({ storage })
 
 //routes with file upload
 app.post('/auth/register', upload.single('picture'), register)
-app.post("/posts", protect, upload.single('picture'), createPost)
+app.post("/posts/create", protect, upload.single('picture'), createPost)
 
 //mount routers
 app.use('/api/v1/bootcamps', bootcamps)
@@ -103,12 +102,9 @@ app.use('/api/v1/courses', courses),
 app.use('/api/v1/auth', auth)
 app.use('/api/v1/users', users);
 app.use("/api/v1/feedbacks", feedbacks);
-app.use("/api/v1/posts", posts);
 
-
-
-
-
+//mount club routers
+app.use("/posts", posts);
 
 app.use(errHandler)
 

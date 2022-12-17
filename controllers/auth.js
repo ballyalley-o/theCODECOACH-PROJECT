@@ -20,7 +20,9 @@ exports.register = asyncHandler(async (req, res, next) => {
         password,
         picturePath,
         friends,
-        location
+        location,
+        viewedProfile: Math.floor(Math.random() * 10000),
+        impressions: Math.floor(Math.random() * 10000),
     })
 
  sendTokenResponse(user, 200, res)
@@ -34,11 +36,11 @@ exports.login = asyncHandler(async (req, res, next) => {
 
   //Validation email and password
   if (!email || !password) {
+
     return next(
       new ErrorResponse("Please provide a valid email and password", 400)
     );
   }
-
   //check for user
   const user = await User.findOne({ email }).select("+password");
 
@@ -222,7 +224,6 @@ const sendTokenResponse = (user, statusCode, res) => {
   if (process.env.NODE_ENV === 'production') {
     options.secure = true
   }
-
   res
     .status(statusCode)
     .cookie('token', token, options)

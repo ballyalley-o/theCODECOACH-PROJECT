@@ -21,7 +21,8 @@ router
     advancedResults(Feedback, {
       path: "bootcamp",
       select: "name description",
-    }), getFeedbacks).post(protect, authorize('student', 'admin'), addFeedback);
+    }), getFeedbacks)
+  .post(protect, authorize('student', 'admin'), addFeedback);
 
   router
   .route('/:id')
