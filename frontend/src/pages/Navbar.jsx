@@ -53,7 +53,7 @@ import { TbWorld } from "react-icons/tb"
             borderRadius="9px"
             gap="3rem"
           >
-            <InputBase placeholder="Search Bootcamps" />
+            <InputBase placeholder="Search Bootcamps" sx={{ color: "light" }} />
             <IconButton>
               <BiSearchAlt />
             </IconButton>
@@ -63,17 +63,34 @@ import { TbWorld } from "react-icons/tb"
 
       {/* Desktop */}
       {isNonMobileScreens ? (
-        <FlexBetween gap="2rem">
-          <IconButton onClick={() => dispatch(setMode())}>
-            {theme.palette.mode === "dark" ? (
-              <MdOutlineLightMode sx={{ color: dark, fontSize: "25px" }} />
-            ) : (
-              <MdDarkMode sx={{ fontSize: "25px" }} />
-            )}
-          </IconButton>
-          <IoNotificationsCircleSharp sx={{ fontSize: "25px" }} />
-          <AiOutlineMessage sx={{ fontSize: "25px" }} />
-          <MdOutlineHelp sx={{ fontSize: "25px" }} />
+        <FlexBetween gap="1rem">
+          <Typography
+            gap="2rem"
+            sx={{ fontSize: "2rem", fontFamily: "Fjalla One" }}
+          >
+            BOOTCAMPS
+          </Typography>
+          <Typography
+            gap="2rem"
+            sx={{ fontSize: "2rem", fontFamily: "Fjalla One" }}
+          >
+            COURSES
+          </Typography>
+          <Typography
+            gap="2rem"
+            sx={{ fontSize: "2rem", fontFamily: "Fjalla One" }}
+          >
+            CLUB
+          </Typography>
+          <Typography
+            gap="2rem"
+            sx={{ fontSize: "2rem", fontFamily: "Fjalla One" }}
+          >
+            FEEDBACKS
+          </Typography>
+
+          <IoNotificationsCircleSharp sx={{ fontSize: "40px" }} />
+          <AiOutlineMessage sx={{ fontSize: "40px" }} />
           <FormControl variant="standard" value={fullName}>
             <Select
               value={fullName}
@@ -96,6 +113,14 @@ import { TbWorld } from "react-icons/tb"
               <MenuItem onClick={() => dispatch(setLogout())}>Logout</MenuItem>
             </Select>
           </FormControl>
+          <MdOutlineHelp sx={{ fontSize: "40px" }} />
+          <IconButton onClick={() => dispatch(setMode())}>
+            {theme.palette.mode === "dark" ? (
+              <MdOutlineLightMode sx={{ color: dark, fontSize: "25px" }} />
+            ) : (
+              <MdDarkMode sx={{ fontSize: "25px" }} />
+            )}
+          </IconButton>
         </FlexBetween>
       ) : (
         <IconButton
@@ -143,9 +168,6 @@ import { TbWorld } from "react-icons/tb"
                 <MdDarkMode sx={{ fontSize: "25px" }} />
               )}
             </IconButton>
-            <IoNotificationsCircleSharp sx={{ fontSize: "25px" }} />
-            <AiOutlineMessage sx={{ fontSize: "25px" }} />
-            <MdOutlineHelp sx={{ fontSize: "25px" }} />
             <FormControl variant="standard" value={fullName}>
               <Select
                 value={fullName}
@@ -167,11 +189,18 @@ import { TbWorld } from "react-icons/tb"
                 <MenuItem value={fullName}>
                   <Typography>{fullName}</Typography>
                 </MenuItem>
+                <MenuItem>BOOTCAMPS</MenuItem>
+                <MenuItem>COURSES</MenuItem>
+                <MenuItem>CLUB</MenuItem>
+                <MenuItem>FEEDBACKS</MenuItem>
                 <MenuItem onClick={() => dispatch(setLogout())}>
                   Logout
                 </MenuItem>
               </Select>
             </FormControl>
+            <IoNotificationsCircleSharp sx={{ fontSize: "25px" }} />
+            <AiOutlineMessage sx={{ fontSize: "25px" }} />
+            <MdOutlineHelp sx={{ fontSize: "30px" }} />
           </FlexBetween>
         </Box>
       )}

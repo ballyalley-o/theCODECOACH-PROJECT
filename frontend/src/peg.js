@@ -1,17 +1,17 @@
 // setting color values yellow from mui including dark mode
 export const colorPalette = {
   grey: {
-    0: "#FFFFFF",
+    0: "#B1B1B3",
     10: "#F6F6F6",
-    50: "#F0F0F0",
+    50: "#9EAAB8",
     100: "#E0E0E0",
-    200: "#C2C2C2",
-    300: "#A3A3A3",
-    400: "#858585",
-    500: "#666666",
-    600: "#4D4D4D",
-    700: "#333333",
-    800: "#1A1A1A",
+    200: "#AEAFB0",
+    300: "#6F757C",
+    400: "#626363",
+    500: "#374F57",
+    600: "#2A3C42",
+    700: "#262626",
+    800: "#1F242E",
     900: "#0A0A0A",
     1000: "#000000",
   },
@@ -76,22 +76,22 @@ export const colorSettings = (mode) => {
           }),
     },
     typography: {
-      fontFamily: ["Poppins:ital", "sans-serif"].join(","),
+      fontFamily: ["Fjalla One", "sans-serif"].join(","),
       fontSize: 12,
       h1: {
-        fontFamily: ["Unbounded", "sans-serif"].join(","),
+        fontFamily: ["Questrial", "sans-serif"].join(","),
         fontSize: 40,
       },
       h2: {
-        fontFamily: ["Unbounded", "sans-serif"].join(","),
+        fontFamily: ["Questrial", "sans-serif"].join(","),
         fontSize: 32,
       },
       h3: {
-        fontFamily: ["Unbounded", "sans-serif"].join(","),
+        fontFamily: ["Questrial", "sans-serif"].join(","),
         fontSize: 24,
       },
       h4: {
-        fontFamily: ["Unbounded", "sans-serif"].join(","),
+        fontFamily: ["Questrial", "sans-serif"].join(","),
         fontSize: 20,
       },
       h5: {
