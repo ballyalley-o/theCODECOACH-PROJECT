@@ -4,6 +4,8 @@ const ErrorResponse = require("../utilities/errorResponse")
 const geocoder = require( "../utilities/geocoder")
 const asyncHandler = require("../middleware/async")
 
+
+
 //Get ALL bootcamps
 //Route GET /api/v1/bootcamps
 //access Public
@@ -11,6 +13,7 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
 
     res.status(200).json(res.advancedResults)
 })
+
 
 //Get single bootcamp
 //Route GET /api/v1/bootcamp/:id

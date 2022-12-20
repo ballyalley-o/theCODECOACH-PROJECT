@@ -189,6 +189,7 @@ import { TbWorld } from "react-icons/tb"
                 <MenuItem value={fullName}>
                   <Typography>{fullName}</Typography>
                 </MenuItem>
+                <MenuItem>DASHBOARD</MenuItem>
                 <MenuItem>BOOTCAMPS</MenuItem>
                 <MenuItem>COURSES</MenuItem>
                 <MenuItem>CLUB</MenuItem>

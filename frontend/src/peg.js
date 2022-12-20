@@ -1,3 +1,5 @@
+
+
 // setting color values yellow from mui including dark mode
 export const colorPalette = {
   grey: {
@@ -71,7 +73,7 @@ export const colorSettings = (mode) => {
             },
             background: {
               default: colorPalette.grey[10],
-              alt: colorPalette.grey[0],
+              alt: colorPalette.grey[100],
             },
           }),
     },
@@ -105,4 +107,3 @@ export const colorSettings = (mode) => {
     },
   };
 };
-

@@ -15,8 +15,7 @@
     monospace;
 } */
 
-@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Poppins:ital,wght@0,200;0,700;1,900&family=Questrial&display=swap');
-html,
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One&family=Fjalla+One&family=Poppins:ital,wght@0,200;0,700;1,900&family=Questrial&display=swap');
 body,
 #root,
 .app {

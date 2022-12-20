@@ -11,6 +11,7 @@ const Bootcamp = require('./models/Bootcamp')
 const Course = require("./models/Course");
 const User = require("./models/User");
 const Feedback = require("./models/Feedback");
+const Post = require("./models/Post");
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, {})
@@ -22,6 +23,9 @@ const users = JSON.parse(fs.readFileSync(`${__dirname}/seeds/users.json`, "utf-8
 const feedbacks = JSON.parse(
   fs.readFileSync(`${__dirname}/seeds/feedbacks.json`, "utf-8")
 );
+const posts = JSON.parse(
+  fs.readFileSync(`${__dirname}/seeds/posts.json`, "utf-8")
+);
 //Import to DB
 const importData = async () => {
     try {
@@ -29,6 +33,8 @@ const importData = async () => {
         await Course.create(courses)
         await User.create(users);
         await Feedback.create(feedbacks);
+        await Post.create(posts);
+
 
         console.log('Data Imported...'.blue.inverse)
         process.exit()
@@ -44,6 +50,7 @@ const deleteData = async () => {
     await Course.deleteMany()
     await User.deleteMany();
     await Feedback.deleteMany();
+    await Post.deleteMany();
 
     console.log("Data Destroyed...".red.inverse)
     process.exit()

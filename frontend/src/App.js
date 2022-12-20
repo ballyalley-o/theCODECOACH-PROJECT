@@ -1,37 +1,48 @@
-import React from 'react';
-import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Navigate, Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { Profile } from './pages/Profile'
 import { useMemo } from 'react'
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { useSelector } from 'react-redux'
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
+import { CssBaseline } from "@mui/material";
 import { colorSettings } from './peg'
+import { ToastContainer } from "react-toastify";
+
 
 
 function App() {
   const mode = useSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(colorSettings(mode)), [mode]);
-  // const isAuth = Boolean(useSelector((state) => state.token));
+  const isAuth = Boolean(useSelector((state) => state.token));
+
+// const toastConfiguration = {
+//   autoClose: 2000,
+//   // draggable: true,
+//   // pauseOnHover: true
+//   //etc you get the idea
+// };
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
             <Route path="/" element={<Login />} />
             <Route
               path="/home"
-              element={<Home />}
+              element={isAuth ? <Home /> : <Navigate to="/" />}
             />
             <Route
-              path="/profile"
-              element={ <Profile />}
+              path="/profile/:Id"
+              element={isAuth ? <Profile /> : <Navigate to="/" />}
             />
           </Routes>
         </ThemeProvider>
-      </BrowserRouter>
+      </Router>
+      <ToastContainer style={{ marginTop: 40 }} />
     </div>
   );
 }

@@ -13,18 +13,18 @@ const PostSchema = new mongoose.Schema({
   description: String,
   picturePath: String,
   userPicturePath: String,
-    likes: {
-        type: Map,
-        of: Boolean,
-    },
-    comments: {
-        type: Array,
-        defaul: []
-    },
+  likes: {
+    type: Map,
+    of: Boolean,
+  },
+  comments: {
+    type: Array,
+    defaul: [],
+  },
   createdAt: {
     type: Date,
     default: Date.now,
-  }
+  },
 });
 
 

@@ -79,7 +79,7 @@ exports.logoutMe = asyncHandler(async (req, res, next) => {
 //GET /api/v1/auth/me
 //Private
 exports.getMe = asyncHandler(async (req, res, next) => {
-  const { name, email, password, role } = req.body;
+  const { firstName, lastName, email, password, role } = req.body;
 
   res.status(200).json({
     success: true,
