@@ -4,9 +4,9 @@ const geocoder = require('../utilities/geocoder')
 
 const BootcampSchema = new mongoose.Schema(
   {
-    name: {
+   name: {
       type: String,
-      required: [true, "Please add a name"],
+      required: [true, "Please add a bootcamp name/title"],
       unique: true,
       trim: true,
       maxlength: [50, "Name can not be more than 50 characters"],
@@ -125,9 +125,9 @@ const BootcampSchema = new mongoose.Schema(
   }
 );
 
-  //Create bootcamp slug from the name
+  //Create bootcamp slug from the bootcamp title
   BootcampSchema.pre('save', function(next) {
-    this.slug = slugify(this.name, { lower: true })
+    this.slug = slugify(this.name, { lower: true });
     next()
   })
 

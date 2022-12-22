@@ -3,7 +3,6 @@ import {
   Box,
   InputLabel,
   Select,
-  InputBase,
   Button,
   TextField,
   Typography,
@@ -21,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../state";
 import Dropzone from "react-dropzone";
 import { FlexBetween } from "./FlexBetween";
-import { toast } from "react-toastify";
+
 
 
 //Schema for registration validation
@@ -36,8 +35,7 @@ import { toast } from "react-toastify";
                 .string()
                 .email("Invalid Credentials")
                 .required("Email is required"),
-    password: yup
-                .string()
+    password: yup.string()
                 .min(6)
                 .max(20)
                 .required("Add your password"),

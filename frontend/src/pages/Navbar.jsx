@@ -7,7 +7,7 @@ import { IoNotificationsCircleSharp } from "react-icons/io5";
 import { BsMenuButtonWideFill } from "react-icons/bs";
 import { FaWindowClose } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { setMode, setLogout } from "../state"
+import { setMode, setLogout } from "../state/index"
 import { useNavigate } from "react-router-dom";
 import { FlexBetween } from "../components/FlexBetween";
 import { TbWorld } from "react-icons/tb"
@@ -27,7 +27,7 @@ import { TbWorld } from "react-icons/tb"
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  const fullName = `${"Bally"} ${"Lomibao"}`;
+  const fullName = `${user.firstName} ${user.lastName}`;
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">

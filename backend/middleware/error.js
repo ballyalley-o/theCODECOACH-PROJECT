@@ -21,7 +21,7 @@ const errHandler = (err, req, res, next) => {
     }
 
     //Mongoose no value entered
-    if (err.name === 'ValidationError') {
+    if (err.bootcamp_title === 'ValidationError') {
         const message = Object.values(err.errors).map(val => val.message)
         error = new ErrorResponse(message, 400)
     }

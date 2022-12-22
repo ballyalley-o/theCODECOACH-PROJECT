@@ -22,7 +22,7 @@ const { createPost } = require("./controllers/posts");
 
 
 //load env vars
-dotenv.config({path: './config/config.env'})
+dotenv.config({path: '../config.env'})
 
 //connect to database
 connectDB()

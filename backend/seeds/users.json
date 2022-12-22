@@ -41,7 +41,7 @@
 		{
 		"_id": "5d7a514b5d2c12c7449be045",
 		"firstName": "John",
-		"lastName": "Does",
+		"lastName": "Doe",
 		"email": "john@gmail.com",
 		"role": "trainer",
 		"password": "123456",
@@ -198,8 +198,8 @@
 
 		"firstName": "Princess-Consuela",
 		"lastName": "Banana-Hammock",
-		"email": "sara@gmail.com",
-		"role": "Student",
+		"email": "princess@gmail.com",
+		"role": "student",
 		"password": "123456",
 		"location": "Manhattan, New York, NY, USA",
 		"picturePath": "princess.png",
