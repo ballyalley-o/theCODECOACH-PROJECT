@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const API_UR_BOOTCAMPS = 'http://localhost:5000/api/v1/bootcamps';
+const API_URL_BOOTCAMPS = 'http://localhost:3000/api/v1/bootcamps';
 
 //create new bootcamp
 const createBootcamp = async (bootcampData, token) => {
@@ -11,7 +11,7 @@ const createBootcamp = async (bootcampData, token) => {
         }
     }
 
-    const response = await axios.post(API_UR_BOOTCAMPS, bootcampData, config);
+    const response = await axios.post(API_URL_BOOTCAMPS, bootcampData, config);
 
     return response.data;
 }

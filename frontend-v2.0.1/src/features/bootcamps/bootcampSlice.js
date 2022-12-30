@@ -36,11 +36,6 @@ export const createBootcamp = createAsyncThunk(API_URL_BOOTCAMP, async (bootcamp
 export const bootcampSlice = createSlice({
     name: 'bootcamp',
     initialState,
-    reducers: {
-        reset: (state) => {
-            state = initialState;
-        }
-    },
     extraReducers: (builder) => {
         builder
         .addCase(createBootcamp.pending, (state) => {

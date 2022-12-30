@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
-import Bootcamps from "./pages/Bootcamps";
+import CreateBootcamp from "./pages/CreateBootcamp";
 import Courses from "./pages/Courses";
 import Club from "./pages/Club";
 import Feedbacks from "./pages/Feedbacks";
@@ -47,14 +47,12 @@ const theme = useMemo(() => createTheme(colorSettings(mode)), [mode]);
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/club" element={<PrivateRoute />} />
-              <Route path="/feedbacks" element={<PrivateRoute />} />
-              <Route path="/bootcamps" element={<PrivateRoute />} />
               <Route path="/courses" element={<Courses />} />
               <Route
                 path="/bootcamps"
                 element={
                   <PrivateRoute>
-                    <Bootcamps />
+                    <CreateBootcamp />
                   </PrivateRoute>
                 }
               />
