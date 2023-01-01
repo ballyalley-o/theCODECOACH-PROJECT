@@ -1,24 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Checkbox from "@mui/material/Checkbox";
+import { Input } from "@mui/material";
 import Select from "react-select";
 import Switch from "@mui/material/Switch";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { createBootcamp, reset } from "../features/bootcamps/bootcampSlice";
+import { createBootcamp } from "../features/bootcamps/bootcampSlice";
 import Spinner from "../components/Spinner";
 import data from "../utilities/multipleSelect"
 
 
 
-
-
-function CreateBootcamp() {
+function CreateBootcamp(props) {
   const { user } = useSelector((state) => state.auth);
   const [selected, setSelected] = useState([]);
   const [formData, setFormData] = useState({
@@ -36,6 +31,8 @@ function CreateBootcamp() {
     acceptGi: false,
     photo: "",
   });
+
+
 
 
   const { name,
@@ -56,8 +53,6 @@ function CreateBootcamp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.bootcamps);
-
-
 
   const onChange = (e) => {
 
@@ -110,15 +105,6 @@ function CreateBootcamp() {
       .catch(toast.error);
   };
 
-//   //clear from cache/ persists from local storage
-// useEffect(() => {
-//   const cache = window.localStorage.getItem('bootcamp_cache');
-//   if (cache !== null ) setFormData(JSON.parse(cache))
-// }, [])
-
-// useEffect(() => {
-//   window.localStorage.setItem('bootcamp_cache', JSON.stringify(formData))
-// }, [formData])
 
   if (isLoading) {
     return <Spinner />;
@@ -134,7 +120,7 @@ function CreateBootcamp() {
       <section className="form">
         <form onSubmit={onSubmit}>
           <div className="form-group">
-            <label htmlFor="name">Bootcamp Name</label>
+            <InputLabel htmlFor="name">Bootcamp Name</InputLabel>
             <input
               name="name"
               type="text"
@@ -147,7 +133,7 @@ function CreateBootcamp() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <InputLabel htmlFor="email">Email</InputLabel>
             <input
               name="email"
               type="email"
@@ -160,7 +146,7 @@ function CreateBootcamp() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="phone">Phone</label>
+            <InputLabel htmlFor="phone">Phone</InputLabel>
             <input
               name="phone"
               className="form-control"
@@ -184,7 +170,7 @@ function CreateBootcamp() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="address">Address</label>
+            <InputLabel htmlFor="address">Address</InputLabel>
             <input
               name="address"
               type="text"
@@ -197,7 +183,7 @@ function CreateBootcamp() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="website">website</label>
+            <InputLabel htmlFor="website">website</InputLabel>
             <input
               name="website"
               type="website"
@@ -208,7 +194,7 @@ function CreateBootcamp() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="jobGuarantee">Job Guarantee</label>
+            <InputLabel htmlFor="jobGuarantee">Job Guarantee</InputLabel>
             <Switch
               name="jobGuarantee"
               type="checkbox"
@@ -219,7 +205,9 @@ function CreateBootcamp() {
                     jobGuarantee: !jobGuarantee ? true : false,
                   }),
                   console.log(
-                    `Job Guarantee: ${" "} ${jobGuarantee === true ? "false" : "true"}`
+                    `Job Guarantee: ${" "} ${
+                      jobGuarantee === true ? "false" : "true"
+                    }`
                   )
                 )
               }
@@ -227,7 +215,7 @@ function CreateBootcamp() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="housing">Housing</label>
+            <InputLabel htmlFor="housing">Housing</InputLabel>
             <Switch
               name="housing"
               type="checkbox"
@@ -247,7 +235,7 @@ function CreateBootcamp() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="jobAssistance">Job Assistance</label>
+            <InputLabel htmlFor="jobAssistance">Job Assistance</InputLabel>
             <Switch
               name="jobAssistance"
               type="checkbox"
@@ -268,7 +256,7 @@ function CreateBootcamp() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="acceptGi">Accept Gi</label>
+            <InputLabel htmlFor="acceptGi">Accept Gi</InputLabel>
             <Switch
               name="acceptGi"
               type="checkbox"
@@ -292,10 +280,7 @@ function CreateBootcamp() {
               <Select
                 className="dropdown"
                 name="careers"
-                value={data.filter(
-                  (obj) => selected.includes(obj.value)
-                  //push to careers
-                )}
+                value={data.filter((obj) => selected.includes(obj.value))}
                 onChange={onChangeSelect}
                 options={data}
                 isMulti
@@ -309,49 +294,11 @@ function CreateBootcamp() {
                     </div>
                   </div>
                 )}
-                {/* <MenuItem value="Web Development">Web Development </MenuItem>
-                <MenuItem value="Mobile Development">
-                  "Mobile Development"
-                </MenuItem>
-                <MenuItem value="UI/UX">UI/UX</MenuItem>
-                <MenuItem value="Business">Business</MenuItem>
-                <MenuItem value="Software Engineering">
-                  Software Engineering
-                </MenuItem>
-                <MenuItem value="FRONT-END Web Development">
-                  FRONT-END Web Development
-                </MenuItem>
-                <MenuItem value="BACK-END Web Development">
-                  BACK-END Web Development
-                </MenuItem>
-                <MenuItem value="FULL_STACK Web Development">
-                  FULL_STACK Web Development
-                </MenuItem>
-                <MenuItem value="Dev Ops">Dev Ops</MenuItem>
-                <MenuItem value="Web Design & Development">
-                  Web Design & Development
-                </MenuItem>
-                <MenuItem value="Data Science Program">
-                  Data Science Program
-                </MenuItem>
-                <MenuItem value="Software QA">Software QA</MenuItem>
-                <MenuItem value="Mastering Web Designing">
-                  Mastering Web Designing
-                </MenuItem>
-                <MenuItem value="Android App Web Development">
-                  Android App Web Development
-                </MenuItem>
-                <MenuItem value="Meta">Meta</MenuItem>
-                <MenuItem value="IBM Data Science">IBM Data Science</MenuItem>
-                <MenuItem value="Apple iOS Web Apps Development">
-                  Apple iOS Web Apps Development
-                </MenuItem>
-                <MenuItem value="Back-end">Back-End</MenuItem> */}
               </Select>
             </FormControl>
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description</label>
+            <InputLabel htmlFor="description">Description</InputLabel>
             <textarea
               name="description"
               id="description"
@@ -361,6 +308,17 @@ function CreateBootcamp() {
               required
               onChange={onChange}
             ></textarea>
+          </div>
+          <div className="form-group">
+            <InputLabel htmlFor="photo">Photo</InputLabel>
+            <Input
+              type="file"
+              id="photo"
+              name="photo"
+              sx={{ display: "flex", cursor: "pointer"}}
+              className="form-control"
+              onChange={onChange}
+            ></Input>
           </div>
           <div className="form-group">
             <button className="btn btn-block">PUBLISH</button>

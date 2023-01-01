@@ -95,6 +95,7 @@ function Login() {
             </select> */}
 
           <div className="form-group">
+            <label htmlFor="email">Email Address :</label>
             <input
               type="email"
               className="form-control"
@@ -107,9 +108,10 @@ function Login() {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="password">Password :</label>
             <input
               type="password"
-              className="form-control"
+              className="form-group"
               id="password"
               name="password"
               value={password}

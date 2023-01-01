@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
+
 import {
   Box,
   InputLabel,
@@ -28,6 +29,7 @@ import {
 } from "@mui/material";
 import Navbar from "./components/Navbar";
 import { colorSettings } from "./peg";
+import Footer from "./components/Footer";
 
 
 
@@ -73,9 +75,11 @@ const theme = useMemo(() => createTheme(colorSettings(mode)), [mode]);
                 }
               />
             </Routes>
+            <Footer />
           </div>
         </ThemeProvider>
       </Router>
+
       <ToastContainer />
     </>
   );

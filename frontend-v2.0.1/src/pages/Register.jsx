@@ -110,15 +110,16 @@ function Register() {
               sx={{ mb: 2, minWidth: 200, gridColumn: "span 2" }}
               size="small"
             >
-              <InputLabel sx={{ fontSize: "1.2rem" }}>Role</InputLabel>
-              <Select name="role" value={role} label="Role" onChange={onChange}>
+              <InputLabel sx={{ fontSize: "1.5rem" }}>Role</InputLabel>
+              <Select name="role" value={role} label="Role" sx={{ fontSize: "1.3rem"}} onChange={onChange}>
                 <MenuItem value={"student"}>Student</MenuItem>
                 <MenuItem value={"trainer"}>Trainer</MenuItem>
               </Select>
             </FormControl>
           </div>
           <div className="form-group">
-           <input
+            <label htmlFor="firstName">First Name :</label>
+            <input
               type="text"
               className="form-control"
               id="name"
@@ -131,6 +132,7 @@ function Register() {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="lastName">Last Name :</label>
             <input
               type="text"
               className="form-control"
@@ -143,6 +145,7 @@ function Register() {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="location">Location :</label>
             <input
               type="location"
               className="form-control"
@@ -171,6 +174,7 @@ function Register() {
             </select> */}
 
           <div className="form-group">
+            <label htmlFor="Email">Email Address :</label>
             <input
               type="email"
               className="form-control"
@@ -183,6 +187,7 @@ function Register() {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="Email">Password :</label>
             <input
               type="password"
               className="form-control"
@@ -195,6 +200,7 @@ function Register() {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="password2">Confirm Password :</label>
             <input
               type="password"
               className="form-control"
