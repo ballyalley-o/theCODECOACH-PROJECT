@@ -10,15 +10,17 @@ import { toast } from "react-toastify";
 import { createBootcamp } from "../features/bootcamps/bootcampSlice";
 import Spinner from "../components/Spinner";
 import data from "../utilities/multipleSelect"
+import BackButton from "../components/BackButton";
+import BootcampItem from "../components/BootcampItem";
 
 
-
-function CreateBootcamp(props) {
+function CreateBootcamp() {
   const { user } = useSelector((state) => state.auth);
   const [selected, setSelected] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    duration: "",
     phone: "",
     description: "",
     averageCost: "",
@@ -32,11 +34,9 @@ function CreateBootcamp(props) {
     photo: "",
   });
 
-
-
-
   const { name,
           email,
+          duration,
           phone,
           description,
           averageCost,
@@ -76,6 +76,7 @@ function CreateBootcamp(props) {
     const bootcampData = {
       name,
       email,
+      duration,
       phone,
       description,
       averageCost,
@@ -112,6 +113,10 @@ function CreateBootcamp(props) {
 
   return (
     <>
+      <div className="backButton" style={{ alignSelf: "left" }}>
+        <BackButton className="backButton" url="/" sx={{ size: "1.5rem" }} />
+      </div>
+
       <section className="heading">
         <h1>Create a Bootcamp</h1>
         <p className="">Publish your DEV camp</p>
@@ -142,6 +147,19 @@ function CreateBootcamp(props) {
               value={email}
               onChange={onChange}
               placeholder="Email Address"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <InputLabel htmlFor="duration">Duration</InputLabel>
+            <input
+              name="duration"
+              type="text"
+              className="form-control"
+              id="duration"
+              value={duration}
+              onChange={onChange}
+              placeholder="Length of Bootcamp"
               required
             />
           </div>
@@ -315,8 +333,9 @@ function CreateBootcamp(props) {
               type="file"
               id="photo"
               name="photo"
-              sx={{ display: "flex", cursor: "pointer"}}
+              sx={{ display: "flex", cursor: "pointer" }}
               className="form-control"
+              acceptedfiles="image/*"
               onChange={onChange}
             ></Input>
           </div>

@@ -7,6 +7,7 @@
 		"website": "https://IBMdev.com",
 		"phone": "(111) 111-1111",
 		"email": "enroll@IBMdev.com",
+    "duration": "12 weeks",
 		"address": "2-16 Sarawia Street, Newmarket, Auckland 1052",
 		"careers": ["Web Development", "IBM Data Science", "Software QA", "UI/UX", "Business", "Back-end", "Dev Ops", "Software QA"],
 		"housing": true,
@@ -21,6 +22,7 @@
     "website": "https://freecodecamp.com",
     "phone": "(222) 222-2222",
     "email": "enroll@freecodecamp.com",
+    "duration": "36 weeks",
     "address": "220 Pawtucket St, Lowell, MA 01854",
     "careers": ["Web Development", "UI/UX", "Mobile Development", "FRONT-END Web Development", "Mastering Web Designing"],
     "housing": false,
@@ -36,6 +38,7 @@
     "website": "https://apple-dev.com",
     "phone": "(333) 333-3333",
     "email": "enroll@apple.com",
+    "duration": "24 weeks",
     "address": "701 W Georgia St, Vancouver, BC V7Y 1G5, Canada",
     "careers": [
       "Web Development",
@@ -57,6 +60,7 @@
     "website": "https://metacoursera.com",
     "phone": "(444) 444-4444",
     "email": "enroll@meta-school.com",
+    "duration": "12 weeks",
     "address": "Queen Street, Auckland CBD, Auckland 1010",
     "careers": [
       "Mobile Development",

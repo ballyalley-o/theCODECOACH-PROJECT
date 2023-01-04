@@ -99,6 +99,22 @@ h3 {
   text-align: center;
 }
 
+.backButton {
+  margin: 20px auto;
+  position: relative;
+  flex-direction: row;
+  justify-content: 'space-between';
+  display: inline-block;
+  padding-top: 20px;
+  padding-left: 20px;
+
+}
+
+.backButton ::hover {
+  color: #FFF59D;
+  font-size: larger;
+}
+
 .heading p {
   font-size: 1.5rem;
   font-weight: 200;
@@ -168,7 +184,6 @@ h3 {
 .btn {
   font-family: Fjalla One;
   padding: 10px 20px;
-  border: 1px solid #000;
   border-radius: 5px;
   background: #000;
   color: #fff;
@@ -194,6 +209,8 @@ h3 {
   color: #000;
 
 }
+
+
 
 .btn-block {
   width: 50%;

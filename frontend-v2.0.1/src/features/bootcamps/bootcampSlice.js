@@ -1,36 +1,39 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import bootcampService from './bootcampService';
+import extractErrorMessage from '../../utilities/extractErrMessage';
+
+const API_URL_BOOTCAMPS = "/api/v1/bootcamps";
+const API_URL_CREATE_BOOTCAMP = "/api/v1/bootcamps/create";
 
 
-const API_URL_BOOTCAMP = "http://localhost:3000/api/v1/bootcamps";
+const initialState = {
+  bootcamps: null,
+  bootcamp: null,
+  // isLoading: false,
+};
 
-
-const initialState =  {
-    bootcamps: [],
-    bootcamp: {},
-    isLoading: false,
-    isError: null,
-    isSuccess: false,
-    message: '',
-}
-
-
-
-//create new bootcamp
-export const createBootcamp = createAsyncThunk(API_URL_BOOTCAMP, async (bootcampData, thunkAPI) => {
+//create bootcamps
+export const createBootcamp = createAsyncThunk(API_URL_CREATE_BOOTCAMP, async (bootcampData, thunkAPI) => {
   try {
     const token = thunkAPI.getState().auth.user.token;
     return await bootcampService.createBootcamp(bootcampData, token);
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
 
-    return thunkAPI.rejectWithValue(message);
+    return thunkAPI.rejectWithValue(extractErrorMessage(error));
   }
 });
 
+//create new bootcamp
+export const getBootcamps = createAsyncThunk(API_URL_BOOTCAMPS, async (_, thunkAPI) => {
+  try {
+
+    const token = thunkAPI.getState().auth.user.token;
+    return await bootcampService.getBootcamps(token);
+
+  } catch (error) {
+    return thunkAPI.rejectWithValue(extractErrorMessage(error));
+  }
+});
 
 
 export const bootcampSlice = createSlice({
@@ -38,19 +41,14 @@ export const bootcampSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder
-        .addCase(createBootcamp.pending, (state) => {
-            state.isLoading = true;
-    })
-        .addCase(createBootcamp.fulfilled, (state) => {
-            state.isLoading = false;
-            state.isSuccess = true;
-
-    })
-        .addCase(createBootcamp.rejected, (state, action) => {
-            state.isLoading = false;
-            state.isError = true;
-            state.message = action.payload;
-    })
+          .addCase(getBootcamps.pending, (state) => {
+            // state.isLoading = true;
+            state.bootcamp = null;
+          })
+          .addCase(getBootcamps.fulfilled, (state, action) => {
+            // state.isLoading = false;
+            state.bootcamps = action.payload;
+          })
 },
 })
 

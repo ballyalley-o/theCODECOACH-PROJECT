@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { InputLabel, TextField, MenuItem, FormControl, Select } from "@mui/material";
 import { register, reset } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
+import BackButton from "../components/BackButton";
 
 function Register() {
   // const [role, setRole] = useState("");
@@ -34,20 +35,7 @@ function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
-
-  // useEffect(() => {
-  //   if (isError) {
-  //     toast.error(message);
-  //   }
-
-  //   //redirect if logged in
-  //   if (isSuccess || user) {
-  //     navigate("/");
-  //   }
-
-  //   dispatch(reset());
-  // }, [isError, isSuccess, message, user, navigate, dispatch])
+  const { isLoading } = useSelector((state) => state.auth);
 
 
   const onChange = (e) => {
@@ -94,6 +82,9 @@ function Register() {
 
   return (
     <>
+      <div className="backButton" style={{ alignSelf: "left" }}>
+        <BackButton className="backButton" url="/" sx={{ size: "1.5rem" }} />
+      </div>
       <section className="heading">
         <h1>
           {"<"}
@@ -111,7 +102,13 @@ function Register() {
               size="small"
             >
               <InputLabel sx={{ fontSize: "1.5rem" }}>Role</InputLabel>
-              <Select name="role" value={role} label="Role" sx={{ fontSize: "1.3rem"}} onChange={onChange}>
+              <Select
+                name="role"
+                value={role}
+                label="Role"
+                sx={{ fontSize: "1.3rem" }}
+                onChange={onChange}
+              >
                 <MenuItem value={"student"}>Student</MenuItem>
                 <MenuItem value={"trainer"}>Trainer</MenuItem>
               </Select>

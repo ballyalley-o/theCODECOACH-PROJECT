@@ -11,6 +11,7 @@ const asyncHandler = require("../middleware/async")
 //access Public
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
 
+  
     res.status(200).json(res.advancedResults)
 })
 
@@ -59,15 +60,13 @@ exports.updateBootcamp = asyncHandler(async (req, res, next) => {
   if (!bootcamp) {
     return next(
       new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404)
-    )
-  }
+    )}
 
   //verification if the user is the owner
   if (bootcamp.user.toString() !== req.user.id && req.user.role !== 'admin') {
     return next(
       new ErrorResponse(`User ${req.params.id} is unauthorized to update this Bootcamp`, 401)
-    )
-  }
+    )}
 
   bootcamp = await Bootcamp.findOneAndUpdate(req.params.id, req.body, {
     new: true,
@@ -114,8 +113,7 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
   if (!bootcamp) {
     return next(
       new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404)
-    );
-  }
+    )}
 
   //verification if the user is the owner
   if (bootcamp.user.toString() !== req.user.id && req.user.role !== "admin") {
@@ -123,9 +121,7 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
       new ErrorResponse(
         `User ${req.params.id} is unauthorized to update this Bootcamp`,
         401
-      )
-    );
-  }
+      ))}
 
   if (!req.files) {
     return next(new ErrorResponse(`Please upload a photo`, 400));
@@ -143,9 +139,7 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
       new ErrorResponse(
         `the Photo you are trying to upload exceeds the maximum size limit`,
         400
-      )
-    );
-  }
+      ))}
 
   //Create custom filename
   file.name = `photo_${bootcamp._id}${path.parse(file.name).ext}`;

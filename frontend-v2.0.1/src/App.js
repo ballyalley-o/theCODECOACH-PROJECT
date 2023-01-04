@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateBootcamp from "./pages/CreateBootcamp";
+import Bootcamps from "./pages/Bootcamps";
 import Courses from "./pages/Courses";
 import Club from "./pages/Club";
 import Feedbacks from "./pages/Feedbacks";
@@ -13,23 +14,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
-
-import {
-  Box,
-  InputLabel,
-  Select,
-  Button,
-  TextField,
-  Typography,
-  useMediaQuery,
-  useTheme,
-  MenuItem,
-  FormControl,
-  FormHelperText,
-} from "@mui/material";
 import Navbar from "./components/Navbar";
 import { colorSettings } from "./peg";
 import Footer from "./components/Footer";
+
 
 
 
@@ -51,10 +39,18 @@ const theme = useMemo(() => createTheme(colorSettings(mode)), [mode]);
               <Route path="/club" element={<PrivateRoute />} />
               <Route path="/courses" element={<Courses />} />
               <Route
-                path="/bootcamps"
+                path="/bootcamps/create"
                 element={
                   <PrivateRoute>
                     <CreateBootcamp />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/bootcamps"
+                element={
+                  <PrivateRoute>
+                    <Bootcamps />
                   </PrivateRoute>
                 }
               />

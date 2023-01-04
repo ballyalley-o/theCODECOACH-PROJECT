@@ -19,7 +19,7 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { isLoading } = useSelector(
       (state) => state.auth
     );
 
@@ -79,6 +79,7 @@ function Login() {
 
       <section className="form">
         <form onSubmit={onSubmit}>
+
           {/* <select
               type="select"
               className="form-control"

@@ -1,5 +1,18 @@
 import { useState } from "react";
-import { Box, Menu, MenuItem, IconButton, InputBase, FormControl, useTheme, useMediaQuery, Select, Typography } from "@mui/material";
+import {
+        Box,
+        Menu,
+        MenuItem,
+        IconButton,
+        Button,
+        InputBase,
+        FormControl,
+        useTheme,
+        useMediaQuery,
+        Select,
+        Typography,
+        Badge
+      } from "@mui/material";
 import { BiSearchAlt } from "react-icons/bi";
 import { AiOutlineMessage } from "react-icons/ai";
 import { MdDarkMode, MdOutlineLightMode, MdOutlineHelp } from "react-icons/md";
@@ -14,28 +27,39 @@ import { logout, reset } from "../features/auth/authSlice";
 
   const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  const open = Boolean(anchorEl);
+
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px");
 
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;
   const dark = theme.palette.neutral.dark;
   const background = theme.palette.background.default;
-  const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  const fullName = `${"Dummy"} ${"User"}`;
+  let fullName;
+
+  fullName = `${"user.firstName"} ${"user.lastName"}`;
 
 
+  const handleClick = (event) => {
+    console.log(event.target);
+
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
     navigate("/");
   }
-
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
@@ -73,7 +97,47 @@ import { logout, reset } from "../features/auth/authSlice";
       {/* Desktop */}
       {isNonMobileScreens ? (
         <FlexBetween gap="1rem">
-          <Link to={"/bootcamps"}>
+          <div>
+            <Button
+              id="basic-button-bootcamp"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleClick}
+              sx={{
+                fontSize: "1.2rem",
+                fontFamily: "Fjalla One",
+                color: dark,
+                "&:hover": {
+                  border: "2px solid black",
+                  color: "black",
+                  fontWeight: "bold",
+                  fontSize: "1.4rem",
+                },
+                "&:focus": {
+                  fontSize: "1.4rem",
+                },
+              }}
+            >
+              BOOTCAMPS
+            </Button>
+            <Menu
+              id="basic-bootcamp"
+              anchorEl={anchorEl}
+              open={open && anchorEl.id === "basic-button-bootcamp"}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-bootcamp",
+              }}
+            >
+              <MenuItem onClick={() => navigate("/bootcamps")}>
+                Bootcamps
+              </MenuItem>
+              <MenuItem onClick={() => navigate("/bootcamps/create")}>
+                Create Bootcamp
+              </MenuItem>
+            </Menu>
+          </div>
+          {/* <Link to={"/bootcamps"}>
             <Typography
               gap="1.5rem"
               sx={{
@@ -87,24 +151,63 @@ import { logout, reset } from "../features/auth/authSlice";
               }}
             >
               BOOTCAMPS
+              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <InputLabel id="demo-select-small">Age</InputLabel>
+                <Select
+                  labelId="demo-select-small"
+                  id="demo-select-small"
+                  label="Age"
+                  onClick={() => navigate("/bootcamps")}
+                >
+                  <MenuItem onClick={() => navigate("/bootcamps")}>
+                    Bootcamps
+                  </MenuItem>
+                  <MenuItem onClick={() => navigate("/create")}>
+                    Create Bootcamp
+                  </MenuItem>
+                </Select>
+              </FormControl>
             </Typography>
-          </Link>
-          <Link to={"/courses"}>
-            <Typography
-              gap="2rem"
+          </Link> */}
+          <div>
+            <Button
+              id="basic-button-course"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={(event) => setAnchorEl(event.currentTarget)}
               sx={{
                 fontSize: "1.2rem",
                 fontFamily: "Fjalla One",
+                color: dark,
                 "&:hover": {
-                  color: "#4D4D4D",
-                  cursor: "pointer",
+                  border: "2px solid black",
+                  color: "black",
+                  fontWeight: "bold",
+                  fontSize: "1.4rem",
+                },
+                "&:focus": {
                   fontSize: "1.4rem",
                 },
               }}
             >
               COURSES
-            </Typography>
-          </Link>
+            </Button>
+            <Menu
+              id="basic-course"
+              anchorEl={anchorEl}
+              open={open && anchorEl.id === "basic-button-course"}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-course",
+              }}
+            >
+              <MenuItem onClick={() => navigate("/courses")}>Courses</MenuItem>
+              <MenuItem onClick={() => navigate("/courses/create")}>
+                Create Course
+              </MenuItem>
+            </Menu>
+          </div>
           <Link to={"/club"}>
             <Typography
               gap="2rem"
@@ -138,8 +241,6 @@ import { logout, reset } from "../features/auth/authSlice";
               FEEDBACKS
             </Typography>
           </Link>
-          <IoNotificationsCircleSharp sx={{ fontSize: "40px" }} />
-          <AiOutlineMessage sx={{ fontSize: "40px" }} />
           <FormControl variant="standard" value={fullName}>
             <Select
               value={fullName}
@@ -165,13 +266,20 @@ import { logout, reset } from "../features/auth/authSlice";
               </MenuItem>
             </Select>
           </FormControl>
-          <MdOutlineHelp sx={{ fontSize: "40px" }} />
+          <Badge badgeContent={4} color="error">
+            <IoNotificationsCircleSharp style={{ fontSize: "2rem" }} />
+          </Badge>
+          <Badge badgeContent={1} color="error">
+            <AiOutlineMessage style={{ fontSize: "2rem" }} />
+          </Badge>
+
+          <MdOutlineHelp style={{ fontSize: "2rem" }} />
           {/* onClick={() => dispatch(setMode())} */}
           <IconButton>
             {theme.palette.mode === "dark" ? (
-              <MdOutlineLightMode sx={{ color: dark, fontSize: "25px" }} />
+              <MdOutlineLightMode style={{ color: dark, fontSize: "2rem" }} />
             ) : (
-              <MdDarkMode sx={{ fontSize: "25px" }} />
+              <MdDarkMode style={{ fontSize: "2rem" }} />
             )}
           </IconButton>
         </FlexBetween>
@@ -249,7 +357,9 @@ import { logout, reset } from "../features/auth/authSlice";
                 <MenuItem>Logout</MenuItem>
               </Select>
             </FormControl>
-            <IoNotificationsCircleSharp sx={{ fontSize: "25px" }} />
+            <Badge badgeContent={4} color="error">
+              <IoNotificationsCircleSharp sx={{ fontSize: "25px" }} />
+            </Badge>
             <AiOutlineMessage sx={{ fontSize: "25px" }} />
             <MdOutlineHelp sx={{ fontSize: "30px" }} />
           </FlexBetween>

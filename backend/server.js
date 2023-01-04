@@ -34,6 +34,7 @@ const auth = require('./routes/auth')
 const users = require("./routes/users");
 const feedbacks = require("./routes/feedbacks");
 const posts = require("./routes/posts");
+const { createBootcamp } = require('./controllers/bootcamps')
 
 
 const app = express()
@@ -41,11 +42,10 @@ const app = express()
 
 //body parsers
 app.use(express.json())
+app.use(cookieParser());
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
-
-app.use(cookieParser())
 
 // dev loggin middleware
 if (process.env.NODE_ENV === 'development') {
@@ -75,9 +75,13 @@ const rateLimiter = expRateLimit({
 })
 app.use(rateLimiter)
 
-
 //set static folder path
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, "../frontend-v2.0.1/build")));
+
+// FIX: below code fixes app crashing on refresh in deployment
+  app.get('*', (_, res) => {
+    res.sendFile(path.join(__dirname, '../frontend-v2.0.1/build/index.html'))
+  })
 
 //file storage
 const storage = multer.diskStorage({
@@ -94,6 +98,7 @@ const upload = multer({ storage })
 
 //routes with file upload
 app.post('/auth/register', upload.single('picture'), register)
+app.post('/api/v1/bootcamps/create', protect, upload.single('photo'), createBootcamp)
 app.post("/posts/create", protect, upload.single('picture'), createPost)
 
 //mount routers

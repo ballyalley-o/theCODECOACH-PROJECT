@@ -36,6 +36,9 @@ router
 router
   .route("/")
   .get(advancedResults(Bootcamp, "courses"), getBootcamps)
+
+router
+  .route("/create")
   .post(protect, authorize("trainer", "admin"), createBootcamp);
 
 router

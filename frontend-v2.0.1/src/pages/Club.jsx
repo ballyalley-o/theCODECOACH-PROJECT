@@ -1,9 +1,15 @@
 import React from 'react'
+import BackButton from '../components/BackButton'
 
 function Club() {
   return (
-    <div><h1>CLUB</h1></div>
-  )
+    <>
+      <BackButton />
+      <div>
+        <h1>CLUB</h1>
+      </div>
+    </>
+  );
 }
 
 export default Club
